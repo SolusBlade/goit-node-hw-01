@@ -11,7 +11,7 @@ const saveChanges = async (arr) => {
 
 const listContacts = async () => {
 	const data = await fs.readFile(contactsPath);
-
+	
 	return JSON.parse(data);
 };
 
@@ -28,7 +28,8 @@ const removeContact = async (contactId) => {
 	const index = contacts.findIndex((item) => item.id === contactId);
 	if (index === -1) return null
     const deletedContact = contacts.splice(index, 1);
-    await saveChanges(contacts);
+	await saveChanges(contacts);
+	
     return deletedContact;
 };
 
@@ -41,7 +42,8 @@ const addContact = async (name, email, phone) => {
 			phone,
 		};
     contacts.push(newContact);
-    await saveChanges(contacts);
+	await saveChanges(contacts);
+	
     return newContact;
 };
 
